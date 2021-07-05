@@ -18,13 +18,13 @@ has_many :comments
 
 ## prototypesテーブル
 
-| Column     | Type             | Options     |
-| ---------- | ---------------- | ----------- |
-| title      | string           | null: false |
-| catch_copy | text             | null: false |
-| concept    | text             | null: false |
-| image      | ActiveStorageで実装 |           |
-| user       | references       |             |
+| Column     | Type             | Options           |
+| ---------- | ---------------- | ----------------- |
+| title      | string           | null: false       |
+| catch_copy | text             | null: false       |
+| concept    | text             | null: false       |
+| image      | ActiveStorageで実装 |                 |
+| user       | references       | foreign_key: true |
 
 ### Association
 
@@ -33,11 +33,11 @@ has_many :comments
 
 ## commentsテーブル
 
-| Column    | Type       | Options     |
-| --------- | ---------- | ----------- |
-| text      | text       | null: false |
-| user      | references |             |
-| prototype | references |             |
+| Column    | Type       | Options           |
+| --------- | ---------- | ----------------- |
+| text      | text       | null: false       |
+| user      | references | foreign_key: true |
+| prototype | references | foreign_key: true |
 
 ### Association
 
