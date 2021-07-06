@@ -1,8 +1,9 @@
-<%= form_with model: @prototype, method: :post, local: true do |f|%>
+<%= form_with model: @prototype, local: true do |f|%>
   <div class="field">
     <%= f.label :title, "プロトタイプの名称" %><br />
     <%= f.text_field :title, id:"prototype_title" %>
   </div>
+
 
   <div class="field">
     <%= f.label :catch_copy, "キャッチコピー" %><br />
@@ -23,3 +24,4 @@
     <%= f.submit "保存する", class: :form__btn  %>
   </div>
 <% end %>
+
