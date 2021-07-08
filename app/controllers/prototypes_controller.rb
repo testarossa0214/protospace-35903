@@ -1,4 +1,7 @@
 class PrototypesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :move_to_index, only: [:edit]
+
   def index
     @prototypes = Prototype.all
   end
@@ -18,6 +21,8 @@ class PrototypesController < ApplicationController
 
   def show
     @prototype = Prototype.find(params[:id])
+    @comments = @prototype.comments.includes(:prototype)
+    @comment = Comment.create
   end
 
   def edit
@@ -45,4 +50,14 @@ class PrototypesController < ApplicationController
   def prototype_params
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
+
+  def move_to_index
+    if current_user.id !=  Prototype.find(params[:id]).user_id
+      redirect_to action: :index
+    end
+  end
+
+  # if ログイン状態ユーザー !=  プロトタイプを投稿したユーザー
+  #   redirect_to action: :index
+  # end
 end
